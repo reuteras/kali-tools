@@ -100,8 +100,6 @@ augroup resCur
     autocmd BufWinEnter * call ResCur()
 augroup END
 
-call pathogen#infect() 
-
 " Spell
 " Download Swedish files from ftp://ftp.vim.org/pub/vim/runtime/spell/sv/
 " Control via
