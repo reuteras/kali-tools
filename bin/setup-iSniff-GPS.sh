@@ -19,6 +19,7 @@ if [[ ! -d ~/src/iSniff-GPS/.env ]]; then
     cd ~/src/iSniff-GPS
     virtualenv --no-site-packages .env
     . .env/bin/activate && pip install -U -r requirements.txt
+    . .env/bin/activate && pip install scapy
     . .env/bin/activate && ./manage.py syncdb
 fi
 
