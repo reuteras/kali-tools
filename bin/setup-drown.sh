@@ -16,9 +16,8 @@ if ! dpkg --status virtualenv > /dev/null 2>&1 ; then
 fi
 
 if [[ ! -d ~/src/public_drown_scanner/.env ]]; then
-    apt-get install -y python-enum scapy python-crypto
     cd ~/src/public_drown_scanner
     virtualenv --no-site-packages .env
-    . .env/bin/activate && pip install scapy-ssl_tls
+    . .env/bin/activate && pip install scapy-ssl_tls enum pycrypto scapy pyasn1
 fi
 
