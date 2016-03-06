@@ -94,6 +94,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-PATH=$PATH:Documents/kali-tools/bin
+PATH=$PATH:kali-tools/bin
 export PATH
 
