@@ -1,7 +1,7 @@
 #!/bin/bash
 
-apt-get update && apt-get dist-upgrade
+apt-get update && apt-get -y dist-upgrade
 
-apt-get install open-vm-tools-desktop fuse
+apt-get install -y open-vm-tools-desktop fuse
 
 
