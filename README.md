@@ -39,3 +39,6 @@ To use it run:
 
 ##TODO
 * https://github.com/PicciMario/iPhone-Backup-Analyzer-2
+* Volatility plugins
+    - https://github.com/tribalchicken/volatility-bitlocker
+    - https://github.com/Dutchy-/volatility-plugins
