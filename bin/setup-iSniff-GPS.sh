@@ -12,6 +12,7 @@ if [[ ! -d ~/src/iSniff-GPS ]]; then
 fi
 
 if ! dpkg --status virtualenv > /dev/null 2>&1 ; then
+    apt-get update
     apt-get install -y virtualenv
 fi
 
