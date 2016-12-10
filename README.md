@@ -37,8 +37,3 @@ To use it run:
     ./bin/iSniff-GPS-listen.sh      # Start to listen
     ./bin/iSniff-GPS-web.sh         # Start web server and iceweasel
 
-##TODO
-* https://github.com/PicciMario/iPhone-Backup-Analyzer-2
-* Volatility plugins
-    - https://github.com/tribalchicken/volatility-bitlocker
-    - https://github.com/Dutchy-/volatility-plugins
