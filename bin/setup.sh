@@ -1,6 +1,13 @@
 #!/bin/bash
 
-apt-get update && apt-get -y dist-upgrade
+apt-get update 
+
+DEBIAN_FRONTEND=noninteractive APT_LISTCHANGES_FRONTEND=none \
+    apt-get \
+    -o Dpkg::Options::="--force-confnew --force-confdef" \
+    --force-yes \
+    -fuy \
+    dist-upgrade
 
 # Install Vmware tools
 apt-get install -y open-vm-tools-desktop fuse
