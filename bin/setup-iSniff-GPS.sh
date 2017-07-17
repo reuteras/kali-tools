@@ -19,8 +19,11 @@ fi
 if [[ ! -d ~/src/iSniff-GPS/.env ]]; then
     cd ~/src/iSniff-GPS
     virtualenv --no-site-packages .env
+    # shellcheck disable=SC1091
     . .env/bin/activate && pip install -U -r requirements.txt
+    # shellcheck disable=SC1091
     . .env/bin/activate && pip install scapy
+    # shellcheck disable=SC1091
     . .env/bin/activate && ./manage.py syncdb
 fi
 

@@ -18,6 +18,7 @@ fi
 if [[ ! -d ~/src/public_drown_scanner/.env ]]; then
     cd ~/src/public_drown_scanner
     virtualenv --no-site-packages .env
+    # shellcheck disable=SC1091
     . .env/bin/activate && pip install scapy-ssl_tls enum pycrypto scapy pyasn1
 fi
 
