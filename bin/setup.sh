@@ -9,11 +9,12 @@ DEBIAN_FRONTEND=noninteractive APT_LISTCHANGES_FRONTEND=none \
     -fuy \
     dist-upgrade
 
-# Install Vmware tools
+# Install VMware tools
 apt-get install -y open-vm-tools-desktop fuse
 
 # Install tools
-apt-get install -y libbde-dev libbde-utils exfat-fuse exfat-utils
+apt-get install -y libbde-dev libbde-utils exfat-fuse exfat-utils \
+    pv ecryptfs-utils
 
 # Make sure pip is up to date
 pip install --upgrade pip
