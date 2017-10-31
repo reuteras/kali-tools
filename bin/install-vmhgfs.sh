@@ -17,6 +17,7 @@ fi
 if [[ ! -f "$LINUX_ISO" ]]; then
     info-message "You have to copy linux.iso from your VMware installation to ~/Desktop/linux.iso or pass the pass as the first argument."
     info-message "On Macos open /Applications and right click on VMware Fusion. You'll find the linux.iso under Contents/Library/isoimages."
+    info-message "On Windows you find it under C:\Program Files (x86)\VMware\VMware Workstation."
     exit 1
 fi
 
