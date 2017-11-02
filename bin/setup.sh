@@ -1,6 +1,8 @@
 #!/bin/bash
 
+echo "Running apt-get update."
 apt-get -qq update
+echo "Running apt-get dist-upgrade."
 apt-get -qq -y --force-yes dist-upgrade
 
 # Install VMware tools
