@@ -1,7 +1,7 @@
 #!/bin/bash
 
 apt-get -qq update
-apt-get -qq -y dist-upgrade
+apt-get -qq -y --force-yes dist-upgrade
 
 # Install VMware tools
 apt-get install -y open-vm-tools-desktop fuse
