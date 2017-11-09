@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Temp test
-apt-mark hold gnome-shell-extensions
-
 echo "Running apt-get update."
 apt-get -qq update
 echo "Running apt-get dist-upgrade."
