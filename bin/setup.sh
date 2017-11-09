@@ -1,9 +1,17 @@
 #!/bin/bash
 
+# Temp test
+apt-mark hold gnome-shell-extensions
+
 echo "Running apt-get update."
 apt-get -qq update
 echo "Running apt-get dist-upgrade."
-apt-get -qq -y --force-yes dist-upgrade
+DEBIAN_FRONTEND=noninteractive APT_LISTCHANGES_FRONTEND=none \
+    apt-get \
+    -o Dpkg::Options::="--force-confnew --force-confdef" \
+    --force-yes \
+    -fuy \
+    dist-upgrade
 
 # Install VMware tools
 apt-get install -y open-vm-tools-desktop fuse
