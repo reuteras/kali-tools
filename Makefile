@@ -1,6 +1,9 @@
-.PHONY: install test
+.PHONY: clean install test
 
 all: install
+
+clean:
+	./bin/clean.sh
 
 install:
 	cp .bashrc ~/ && chmod 600 ~/.bashrc && chown root:root ~/.bashrc
