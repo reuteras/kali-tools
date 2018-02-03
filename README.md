@@ -26,7 +26,7 @@ To install run:
 
 ### iSniff-GPS
 
-I've only tested the script with [TP-Link TL-WN722N](http://www.tp-link.com/en/products/details/cat-11_TL-WN722N.html). In Sweden [Webhallen](http://www.webhallen.com/se-sv/datorer_och_tillbehor/109609-tp-link_tradlost_natverkskort_150mbps_80211n_tl-wn722n) has it for 109 kr (2016-03-03).
+I've only tested the script with [TP-Link TL-WN722N](http://www.tp-link.com/en/products/details/cat-11_TL-WN722N.html). It has to be hardware version 1.10. The current hardware version 2 and 3 doesn't work.
 
 To install run:
 
@@ -36,4 +36,15 @@ To use it run:
 
     ./bin/iSniff-GPS-listen.sh      # Start to listen
     ./bin/iSniff-GPS-web.sh         # Start web server and iceweasel
+
+### Alfa wireless card
+
+I have a wireless card from [Alfa](https://www.alfa.com.tw/). To get it working do:
+
+    apt-get install realtek-rtl88xxau-dkms
+    modprobe 8812au
+
+To activate it in monitoring mode run:
+
+    iwconfig wlanxxx mode monitor
 
