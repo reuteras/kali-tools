@@ -16,3 +16,4 @@ if [[ ! -e /etc/apt/sources.list.d/docker.list ]]; then
     sudo apt-get update
 fi
 sudo apt-get install -y docker-ce docker-compose
+systemctl enable docker
