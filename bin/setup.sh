@@ -18,8 +18,8 @@ apt-get install -y libbde-dev libbde-utils exfat-fuse exfat-utils \
     pv ecryptfs-utils
 
 # Make sure pip is up to date
-pip install --upgrade pip
+# pip install --upgrade pip
 
 # Install tool for Rubber ducky
 # Resources http://usbrubberducky.com/#!resources.md
-pip install --upgrade ducktoolkit
+# pip install --upgrade ducktoolkit
