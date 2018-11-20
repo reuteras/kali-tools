@@ -39,12 +39,11 @@ To use it run:
 
 ### Alfa wireless card
 
-I have a wireless card from [Alfa](https://www.alfa.com.tw/). To get it working do:
+I have a wireless card from [Alfa](https://www.alfa.com.tw/). To get it working do the following after connecting with USB 3.0 if run in Fusion:
 
     apt-get install realtek-rtl88xxau-dkms
-    modprobe 8812au
+    modprobe 88XXau
 
 To activate it in monitoring mode run:
 
-    iwconfig wlanxxx mode monitor
-
+    iwconfig wlan0 mode monitor
