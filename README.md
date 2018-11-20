@@ -47,3 +47,5 @@ I have a wireless card from [Alfa](https://www.alfa.com.tw/). To get it working 
 To activate it in monitoring mode run:
 
     iwconfig wlan0 mode monitor
+
+More information can be found in this blog about [How to get your new 5 GHz wireless penetration gear up and working](https://medium.com/@adam.toscher/configure-your-new-wireless-ac-1fb65c6ada57).
