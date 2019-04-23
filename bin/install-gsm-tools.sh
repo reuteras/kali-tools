@@ -49,7 +49,8 @@ if [ ! -d /root/gr-gsm ]; then
     mkdir build
     cd build || exit
     cmake ..
-    mkdir /root/.grc_gnuradio/ /root/.gnuradio/
+    [ ! -e /root/.grc_gnuradio ] && mkdir /root/.grc_gnuradio
+    [ ! -e /root/.gnuradio ] && mkdir /root/.gnuradio
     make
     make install
     ldconfig
