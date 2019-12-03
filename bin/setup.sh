@@ -4,7 +4,10 @@ echo "Running apt-get update."
 apt-get -qq update
 echo "Running apt-get dist-upgrade."
 DEBIAN_FRONTEND=noninteractive APT_LISTCHANGES_FRONTEND=none \
-    apt -fuy dist-upgrade
+    apt \
+        -o Dpkg::Options::=--force-confold \
+        -o Dpkg::Options::=--force-confdef \
+        -y --allow-downgrades --allow-remove-essential --allow-change-held-packages dist-upgrade
 
 # Install VMware tools
 apt install -y open-vm-tools-desktop fuse
