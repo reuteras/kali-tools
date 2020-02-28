@@ -13,7 +13,7 @@ if [[ $MEMORY -lt 2097152 ]]; then
             echo "/root/swap exists!"
             exit
         fi
-        dd if=/dev/zero of=/root/swap bs=1024 count=1048576
+        dd if=/dev/zero of=/root/swap bs=1024 count=2097152
         chmod 0600 /root/swap
         mkswap /root/swap
         swapon /root/swap
