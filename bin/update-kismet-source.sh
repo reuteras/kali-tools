@@ -7,7 +7,7 @@ CREATEDSWAP=0
 
 if [[ $MEMORY -lt 2097152 ]]; then
     echo "Memory smaller then 2GB. Checking swap."
-    if [[ $SWAP -lt 1048576 ]]; then
+    if [[ $SWAP -lt 2097152 ]]; then
         echo "Creating swap in /root/swap."
         if [[ -e /root/swap ]]; then
             echo "/root/swap exists!"
