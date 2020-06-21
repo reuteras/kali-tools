@@ -32,7 +32,7 @@ make plugins-install
 make restricted-plugins
 make restricted-plugins-install
 
-if [[ "$CREATEDSWAP" == "1" ]]; then                                                                                                                                                                                                          
+if [[ "$CREATEDSWAP" == "1" ]]; then
     swapoff /root/swap
     rm /root/swap
 fi
