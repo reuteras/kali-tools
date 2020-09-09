@@ -2,7 +2,7 @@
 
 ![Linter](https://github.com/reuteras/kali-tools/workflows/Linter/badge.svg)
 
-Tools and configs for my Kali installation.
+Tools and configurations for my Kali installation.
 
 Basic installation is done with:
 
