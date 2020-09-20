@@ -57,7 +57,7 @@ How Count the number of people around you by monitoring wifi signals with the he
 To create a graph of run the following command in one window:
 
     cd ~/src/howmanypeoplearearound && . venv/bin/activate && howmanypeoplearearound -o test.json -a wlan0 --loop
-    
+
 After a couple of points been created run this command in another window:
 
     cd ~/src/howmanypeoplearearound && . venv/bin/activate && howmanypeoplearearound --analyze test.json
