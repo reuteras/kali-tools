@@ -8,15 +8,16 @@ CREATEDSWAP=0
 if [[ $MEMORY -lt 2097152 ]]; then
 	echo "Memory smaller then 2GB. Checking swap."
     if [[ $SWAP -lt 1048576 ]]; then
-    	echo "Creating swap in /root/swap."
-        if [[ -e /root/swap ]]; then
- 			echo "/root/swap exists!"
+    	echo "Creating swap in ~/swap."
+        if [[ -e ~/swap ]]; then
+            # shellcheck disable=SC2088
+ 			echo "~/swap exists!"
             exit
         fi
-        dd if=/dev/zero of=/root/swap bs=1024 count=1048576
-        chmod 0600 /root/swap
-        mkswap /root/swap
-        swapon /root/swap
+        dd if=/dev/zero of=~/swap bs=1024 count=1048576
+        chmod 0600 ~/swap
+        mkswap ~/swap
+        swapon ~/swap
 		CREATEDSWAP=1
 	fi
 fi
@@ -41,29 +42,29 @@ apt install -yqq \
     python-scipy \
     swig
 
-cd /root || exit
+cd ~ || exit
 
-if [ ! -d /root/gr-gsm ]; then
+if [ ! -d ~/gr-gsm ]; then
     git clone https://git.osmocom.org/gr-gsm
     cd gr-gsm || exit
     mkdir build
     cd build || exit
     cmake ..
-    [ ! -e /root/.grc_gnuradio ] && mkdir /root/.grc_gnuradio
-    [ ! -e /root/.gnuradio ] && mkdir /root/.gnuradio
+    [ ! -e ~/.grc_gnuradio ] && mkdir ~/.grc_gnuradio
+    [ ! -e ~/.gnuradio ] && mkdir ~/.gnuradio
     make
     make install
     ldconfig
-    cd /root || exit
+    cd ~ || exit
 fi
 
-if [ ! -d /root/IMSI-catcher ]; then
+if [ ! -d ~/IMSI-catcher ]; then
     git clone https://github.com/Oros42/IMSI-catcher.git
-    cd /root || exit
+    cd ~ || exit
 fi
 
 if [[ "$CREATEDSWAP" == "1" ]]; then
-	swapoff /root/swap
-	rm /root/swap
+	swapoff ~/swap
+	rm ~/swap
 fi
 
