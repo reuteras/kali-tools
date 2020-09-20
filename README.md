@@ -10,22 +10,12 @@ Basic installation is done with:
 
 To get my version of _.bashrc_, _.vimrc_ run *make*.
 
-Some of the added alias are:
-
-* *act*=". .env/bin/activate"
-* *zerodisk*="dd if=/dev/zero of=zero; rm -f zero"
-
 Configuration scripts exists for the following tools.
 
-* [drown](https://github.com/nimia/public_drown_scanner)
 * [iSniff-GPS](https://github.com/hubert3/iSniff-GPS)
+* [howmanypeoplearearound](https://github.com/schollz/howmanypeoplearearound)
 
 ## Tools
-### drown
-
-To install run:
-
-    ./bin/setup-drown.sh
 
 ### iSniff-GPS
 
@@ -44,13 +34,30 @@ To use it run:
 
 I have a wireless card from [Alfa](https://www.alfa.com.tw/). To get it working do the following after connecting with USB 3.0 if run in Fusion:
 
-    apt-get install realtek-rtl88xxau-dkms
-    modprobe 88XXau
+    sudo apt-get install realtek-rtl88xxau-dkms
+    sudo modprobe 88XXau
 
 To activate it in monitoring mode run:
 
-    ip link set wlan0 down
-    iwconfig wlan0 mode monitor
-    ip link set wlan0 up
+    sudo ip link set wlan0 down
+    sudo iwconfig wlan0 mode monitor
+    sudo ip link set wlan0 up
 
 More information can be found in this blog about [How to get your new 5 GHz wireless penetration gear up and working](https://medium.com/@adam.toscher/configure-your-new-wireless-ac-1fb65c6ada57).
+
+### howmanypeoplearearound
+
+How Count the number of people around you by monitoring wifi signals with the help of [howmanypeoplearearound](https://github.com/schollz/howmanypeoplearearound).
+
+    cd ~/kali-tools/bin
+    ./configure-alfa-monitor.sh
+    ./install-howmanypeoplearearound.sh
+    cd ~/src/howmanypeoplearearound && . venv/bin/activate && howmanypeoplearearound -a wlan0
+
+To create a graph of run the following command in one window:
+
+    cd ~/src/howmanypeoplearearound && . venv/bin/activate && howmanypeoplearearound -o test.json -a wlan0 --loop
+    
+After a couple of points been created run this command in another window:
+
+    cd ~/src/howmanypeoplearearound && . venv/bin/activate && howmanypeoplearearound --analyze test.json
