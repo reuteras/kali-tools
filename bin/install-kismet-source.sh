@@ -1,13 +1,15 @@
 #!/bin/bash
 # https://www.kali.org/news/kali-on-krack/
 
-if ! grep "unmanaged-devices=interface-name:wlan0" /etc/NetworkManager/NetworkManager.conf ; then
-    cat << EOF >> /etc/NetworkManager/NetworkManager.conf
+if [[ -e /etc/NetworkManager/NetworkManager.conf ]]; then
+    if ! grep "unmanaged-devices=interface-name:wlan0" /etc/NetworkManager/NetworkManager.conf ; then
+        cat << EOF >> /etc/NetworkManager/NetworkManager.conf
 [keyfile]
 unmanaged-devices=interface-name:wlan0
 unmanaged-devices=interface-name:wlan1
 EOF
-    systemctl restart NetworkManager
+        systemctl restart NetworkManager
+    fi
 fi
 
 # Couldn't compile on Rasberry Pi
@@ -54,6 +56,7 @@ apt install -yqq \
     pkg-config \
     protobuf-compiler \
     protobuf-c-compiler \
+    python3-setuptools \
     zlib1g-dev \
 
 cd ~ || exit
