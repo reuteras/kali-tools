@@ -2,7 +2,7 @@
 # https://www.kali.org/news/kali-on-krack/
 
 if [[ -e /etc/NetworkManager/NetworkManager.conf ]]; then
-    if ! grep "unmanaged-devices=interface-name:wlan0" /etc/NetworkManager/NetworkManager.conf ; then
+    if ! grep "unmanaged-devices=interface-name:wlan0" /etc/NetworkManager/NetworkManager.conf > /dev/null ; then
         cat << EOF >> /etc/NetworkManager/NetworkManager.conf
 [keyfile]
 unmanaged-devices=interface-name:wlan0
@@ -59,9 +59,23 @@ apt install -yqq \
     python3-setuptools \
     zlib1g-dev \
 
+if ! grep kali-rolling /etc/debian_version > /dev/null ; then
+    # Other OS - rasbian in my case and need to compile libwebsockets from source
+    cd /tmp || true
+    git clone https://github.com/warmcat/libwebsockets.git
+    # Ugly temp hack
+    git checkout v4.1.6
+    apt install -yqq cmake
+    mkdir build
+    cd build || exit
+    cmake ..
+    make
+    make install
+fi
+
 cd ~ || exit
 
-git clone https://www.kismetwireless.net/git/kismet.git
+[[ ! -e kismet ]] && git clone https://www.kismetwireless.net/git/kismet.git
 cd kismet || exit
 ./configure
 make
