@@ -63,6 +63,7 @@ if ! grep kali-rolling /etc/debian_version > /dev/null ; then
     # Other OS - rasbian in my case and need to compile libwebsockets from source
     cd /tmp || true
     git clone https://github.com/warmcat/libwebsockets.git
+    cd libwebsockets || exit
     # Ugly temp hack
     git checkout v4.1.6
     apt install -yqq cmake
@@ -71,6 +72,7 @@ if ! grep kali-rolling /etc/debian_version > /dev/null ; then
     cmake ..
     make
     make install
+    rm -rf /tmp/libwebsockets
 fi
 
 cd ~ || exit
