@@ -66,7 +66,7 @@ if ! grep kali-rolling /etc/debian_version > /dev/null ; then
     cd libwebsockets || exit
     # Ugly temp hack
     git checkout v4.1.6
-    apt install -yqq cmake
+    apt install -yqq cmake libssl-dev
     mkdir build
     cd build || exit
     cmake ..
