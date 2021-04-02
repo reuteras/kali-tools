@@ -81,7 +81,7 @@ cd ~ || exit
 cd kismet || exit
 ./configure
 make
-make install
+make suidinstall
 make plugins
 make plugins-install
 make restricted-plugins
