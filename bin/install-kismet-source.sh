@@ -75,9 +75,10 @@ if ! grep kali-rolling /etc/debian_version > /dev/null ; then
     rm -rf /tmp/libwebsockets
 fi
 
-cd ~ || exit
+cd || exit
 
 [[ ! -e kismet ]] && git clone https://www.kismetwireless.net/git/kismet.git
+
 cd kismet || exit
 ./configure
 make
