@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PATH=/usr/bin:/bin:/usr/sbin:/sbin
+
 # Couldn't compile on Rasberry Pi
 MEMORY=$(free | grep Mem: | awk '{print $2}' )
 SWAP=$(free | grep Swap: | awk '{print $2}' )
