@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Switch to using prebuilt from https://www.kismetwireless.net/docs/readme/packages/"
+exit
+
 PATH=/usr/bin:/bin:/usr/sbin:/sbin
 
 # Couldn't compile on Rasberry Pi

@@ -1,6 +1,9 @@
 #!/bin/bash
 # https://www.kali.org/news/kali-on-krack/
 
+echo "Switch to using prebuilt from https://www.kismetwireless.net/docs/readme/packages/"
+exit
+
 if [[ -e /etc/NetworkManager/NetworkManager.conf ]]; then
     if ! grep "unmanaged-devices=interface-name:wlan0" /etc/NetworkManager/NetworkManager.conf > /dev/null ; then
         cat << EOF >> /etc/NetworkManager/NetworkManager.conf
