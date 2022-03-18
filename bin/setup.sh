@@ -14,5 +14,6 @@ sudo apt install -y \
     exfat-fuse \
     libbde-dev \
     libbde-utils \
-    pv
+    pv \
+    torbrowser-launcher
 
