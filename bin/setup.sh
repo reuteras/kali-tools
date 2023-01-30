@@ -41,14 +41,24 @@ DEBIAN_FRONTEND=noninteractive APT_LISTCHANGES_FRONTEND=none \
         -o Dpkg::Options::=--force-confdef \
         -y --allow-downgrades --allow-remove-essential --allow-change-held-packages dist-upgrade
 
-info-message "Install tools"
-sudo apt install -y \
-    chromium \
-    exfat-fuse \
-    libbde-dev \
-    libbde-utils \
-    pv \
-    torbrowser-launcher
+if [[ $(uname -m) == "aarch64" ]]; then
+    info-message "Install tools - aarch64"
+    sudo DEBIAN_FRONTEND=noninteractive apt -qq install -y \
+        chromium \
+        exfat-fuse \
+        libbde-dev \
+        libbde-utils \
+        pv
+else
+    info-message "Install tools - x86_64"
+    sudo DEBIAN_FRONTEND=noninteractive apt -qq install -y \
+        chromium \
+        exfat-fuse \
+        libbde-dev \
+        libbde-utils \
+        pv \
+        torbrowser-launcher
+fi
 
 info-message "Install Google Chrome"
 install-google-chrome
