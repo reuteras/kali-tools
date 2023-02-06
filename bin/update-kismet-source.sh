@@ -1,7 +1,13 @@
 #!/bin/bash
 
-echo "Switch to using prebuilt from https://www.kismetwireless.net/docs/readme/packages/"
-exit
+read -rp "Switch to using prebuilt from https://www.kismetwireless.net/docs/readme/packages/ [enter to exit]" value
+
+if [[ "${value}" == "" ]]; then
+    exit
+else
+    echo "Exiting anyway."
+    cd dontexits || exit
+fi
 
 PATH=/usr/bin:/bin:/usr/sbin:/sbin
 

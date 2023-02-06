@@ -8,7 +8,7 @@ Basic installation is done with:
 
     ./bin/setup.sh
 
-To get my version of _.bashrc_, _.vimrc_ run *make*.
+To get my version of _.bashrc_, _.vimrc_ run **make**.
 
 Configuration scripts exists for the following tools.
 
@@ -47,7 +47,7 @@ More information can be found in this blog about [How to get your new 5 GHz wire
 
 ### howmanypeoplearearound
 
-How Count the number of people around you by monitoring wifi signals with the help of [howmanypeoplearearound](https://github.com/schollz/howmanypeoplearearound).
+How Count the number of people around you by monitoring Wi-Fi signals with the help of [howmanypeoplearearound](https://github.com/schollz/howmanypeoplearearound).
 
     cd ~/kali-tools/bin
     ./configure-alfa-monitor.sh
