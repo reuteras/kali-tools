@@ -26,4 +26,3 @@ if [[ ! -d ~/src/iSniff-GPS/.env ]]; then
     # shellcheck disable=SC1091
     . .env/bin/activate && ./manage.py syncdb
 fi
-
