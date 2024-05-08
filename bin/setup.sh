@@ -6,11 +6,11 @@
 
 # Functions to print messages
 function info-message() {
-	echo "**** INFO: $*"
+    echo "**** INFO: $*"
 }
 
 function error-message() {
-	(>&2 echo "**** ERROR: $*")
+    (>&2 echo "**** ERROR: $*")
 }
 
 function error-exit-message() {
