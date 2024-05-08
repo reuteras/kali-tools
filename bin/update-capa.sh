@@ -7,7 +7,7 @@
 # can do. For example, it might suggest that the file is a backdoor,
 # is capable of installing services, or relies on HTTP to communicate.
 
-url=$(curl -s https://api.github.com/repos/fireeye/capa/releases/latest | \
+url=$(curl -s https://api.github.com/repos/fireeye/capa/releases/latest |
     grep 'browser_download_url' | grep 'linux' | cut -d\" -f4 | head -1)
 version=$(echo "$url" | grep -o -E "/v[.0-9]+/" | tr -d '/')
 

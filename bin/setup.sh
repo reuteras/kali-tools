@@ -20,7 +20,7 @@ function error-exit-message() {
 
 # Install Google Chrome
 function install-google-chrome() {
-    if ! dpkg --status google-chrome-stable > /dev/null 2>&1 ; then
+    if ! dpkg --status google-chrome-stable > /dev/null 2>&1; then
         info-message "Installing Google Chrome."
         wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         # shellcheck disable=SC2024
@@ -31,15 +31,14 @@ function install-google-chrome() {
     fi
 }
 
-
 info-message "Running apt-get update."
 sudo apt-get -qq update
 info-message "Running apt-get dist-upgrade."
 DEBIAN_FRONTEND=noninteractive APT_LISTCHANGES_FRONTEND=none \
     sudo apt \
-        -o Dpkg::Options::=--force-confold \
-        -o Dpkg::Options::=--force-confdef \
-        -y --allow-downgrades --allow-remove-essential --allow-change-held-packages dist-upgrade
+    -o Dpkg::Options::=--force-confold \
+    -o Dpkg::Options::=--force-confdef \
+    -y --allow-downgrades --allow-remove-essential --allow-change-held-packages dist-upgrade
 
 if [[ $(uname -m) == "aarch64" ]]; then
     info-message "Install tools - aarch64"

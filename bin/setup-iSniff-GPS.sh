@@ -11,7 +11,7 @@ if [[ ! -d ~/src/iSniff-GPS ]]; then
     git clone https://github.com/hubert3/iSniff-GPS.git
 fi
 
-if ! dpkg --status virtualenv > /dev/null 2>&1 ; then
+if ! dpkg --status virtualenv > /dev/null 2>&1; then
     apt-get update
     apt-get install -y virtualenv
 fi

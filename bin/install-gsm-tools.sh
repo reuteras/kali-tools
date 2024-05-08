@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Couldn't compile on Rasberry Pi
-MEMORY=$(free | grep Mem: | awk '{print $2}' )
-SWAP=$(free | grep Swap: | awk '{print $2}' )
+MEMORY=$(free | grep Mem: | awk '{print $2}')
+SWAP=$(free | grep Swap: | awk '{print $2}')
 CREATEDSWAP=0
 
 if [[ $MEMORY -lt 2097152 ]]; then
@@ -67,4 +67,3 @@ if [[ "$CREATEDSWAP" == "1" ]]; then
     swapoff ~/swap
     rm ~/swap
 fi
-

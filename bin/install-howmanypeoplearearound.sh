@@ -19,7 +19,7 @@ if [[ ! -d ~/src/howmanypeoplearearound ]]; then
     python3 -m venv venv
     # shellcheck disable=SC1091
     . venv/bin/activate && python -m pip install howmanypeoplearearound
-    for file in venv/lib*/python3.*/site-packages/howmanypeoplearearound/__main__.py ; do
+    for file in venv/lib*/python3.*/site-packages/howmanypeoplearearound/__main__.py; do
         sed -i -E "s/tshark, '-I',/tshark,/" "$file"
     done
 fi
