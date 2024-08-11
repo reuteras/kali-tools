@@ -6,7 +6,7 @@ cd ~/src || exit
 
 which pipx > /dev/null 2>&1 || sudo apt install -y pipx
 
-[[ -d ~/bin ]] || mkdir ~/bin 
+[[ -d ~/bin ]] || mkdir ~/bin
 #[[ -f ~/bin/websocat ]] || curl -L -s -o ~/bin/websocat https://github.com/vi/websocat/releases/download/v1.13.0/websocat.aarch64-unknown-linux-musl && chmod +x ~/bin/websocat
 
 pipx install bbot

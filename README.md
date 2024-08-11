@@ -71,4 +71,3 @@ For more information see the GitHub [repository](https://github.com/blacklantern
 
 Then start websocat.
 
-    
