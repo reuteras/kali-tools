@@ -61,3 +61,14 @@ To create a graph of run the following command in one window:
 After a couple of points been created run this command in another window:
 
     cd ~/src/howmanypeoplearearound && . venv/bin/activate && howmanypeoplearearound --analyze test.json
+
+### bbot
+
+For more information see the GitHub [repository](https://github.com/blacklanternsecurity/bbot).
+
+    cd ~/kali-tools/bin
+    ./install-bbot.sh
+
+Then start websocat.
+
+    
