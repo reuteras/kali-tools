@@ -70,4 +70,3 @@ For more information see the GitHub [repository](https://github.com/blacklantern
     ./install-bbot.sh
 
 Then start websocat.
-

@@ -15,4 +15,3 @@ test:
 
 update:
 	./bin/update.sh
-

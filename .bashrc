@@ -96,4 +96,3 @@ fi
 
 PATH=$PATH:kali-tools/bin
 export PATH
-
