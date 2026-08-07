@@ -26,7 +26,7 @@ space_redirects = true
 # Enable this option by un-commenting the following line
 # max_line_length = 150
 
-[{*.yml,*.yaml,.dockerfilelintrc}]
+[{*.json,*.yml,*.yaml,.dockerfilelintrc}]
 indent_style = space
 indent_size = 2
 
