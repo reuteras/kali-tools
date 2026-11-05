@@ -17,12 +17,12 @@ if [[ ! -d "$BIN_DIR" ]]; then
 fi
 
 case "$(uname -m)" in
-    x86_64) asset_suffix="linux.zip" ;;
-    aarch64) asset_suffix="linux-arm64.zip" ;;
-    *)
-        echo "Unsupported architecture: $(uname -m)" >&2
-        exit 1
-        ;;
+x86_64) asset_suffix="linux.zip" ;;
+aarch64) asset_suffix="linux-arm64.zip" ;;
+*)
+    echo "Unsupported architecture: $(uname -m)" >&2
+    exit 1
+    ;;
 esac
 
 url=$(curl -fsSL https://api.github.com/repos/mandiant/capa/releases/latest |
