@@ -1,63 +1,53 @@
 #!/bin/bash
 
-#
-# Functions
-#
+set -euo pipefail
 
-# Functions to print messages
 function info-message() {
     echo "**** INFO: $*"
 }
 
-function error-message() {
-    (>&2 echo "**** ERROR: $*")
+function apt-noninteractive() {
+    sudo DEBIAN_FRONTEND=noninteractive APT_LISTCHANGES_FRONTEND=none apt \
+        -o Dpkg::Options::=--force-confold \
+        -o Dpkg::Options::=--force-confdef \
+        "$@"
 }
 
-function error-exit-message() {
-    (>&2 echo "**** ERROR: $*")
-    exit 1
-}
-
-# Install Google Chrome
+# Install Google Chrome (only available for x86_64)
 function install-google-chrome() {
-    if ! dpkg --status google-chrome-stable > /dev/null 2>&1; then
-        info-message "Installing Google Chrome."
-        wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        # shellcheck disable=SC2024
-        sudo dpkg -i google-chrome-stable_current_amd64.deb > /dev/null 2>&1 || true
-        # shellcheck disable=SC2024
-        sudo apt -qq -f -y install > /dev/null 2>&1
-        rm -f google-chrome-stable_current_amd64.deb
+    if dpkg --status google-chrome-stable > /dev/null 2>&1; then
+        return
     fi
+    info-message "Installing Google Chrome."
+    local tmp_dir
+    tmp_dir=$(mktemp -d)
+    curl -fsSL -o "$tmp_dir/google-chrome-stable_current_amd64.deb" \
+        https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    apt-noninteractive -qq install -y "$tmp_dir/google-chrome-stable_current_amd64.deb"
+    rm -rf "$tmp_dir"
 }
 
-info-message "Running apt-get update."
-sudo apt-get -qq update
-info-message "Running apt-get dist-upgrade."
-DEBIAN_FRONTEND=noninteractive APT_LISTCHANGES_FRONTEND=none \
-    sudo apt \
-    -o Dpkg::Options::=--force-confold \
-    -o Dpkg::Options::=--force-confdef \
-    -y --allow-downgrades --allow-remove-essential --allow-change-held-packages dist-upgrade
+PACKAGES=(
+    chromium
+    exfat-fuse
+    libbde-dev
+    libbde-utils
+    pv
+)
 
-if [[ $(uname -m) == "aarch64" ]]; then
-    info-message "Install tools - aarch64"
-    sudo DEBIAN_FRONTEND=noninteractive apt -qq install -y \
-        chromium \
-        exfat-fuse \
-        libbde-dev \
-        libbde-utils \
-        pv
-else
-    info-message "Install tools - x86_64"
-    sudo DEBIAN_FRONTEND=noninteractive apt -qq install -y \
-        chromium \
-        exfat-fuse \
-        libbde-dev \
-        libbde-utils \
-        pv \
-        torbrowser-launcher
+info-message "Running apt update."
+sudo apt -qq update
+info-message "Running apt dist-upgrade."
+apt-noninteractive -y dist-upgrade
+
+ARCH=$(uname -m)
+if [[ "$ARCH" == "x86_64" ]]; then
+    PACKAGES+=(torbrowser-launcher)
 fi
 
-info-message "Install Google Chrome"
-install-google-chrome
+info-message "Install tools - $ARCH"
+apt-noninteractive -qq install -y "${PACKAGES[@]}"
+
+if [[ "$ARCH" == "x86_64" ]]; then
+    install-google-chrome
+fi

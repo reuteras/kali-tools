@@ -1,72 +1,81 @@
 # kali-tools
 
-![Linter](https://github.com/reuteras/kali-tools/workflows/Linter/badge.svg)
+[![Linter](https://github.com/reuteras/kali-tools/actions/workflows/linter.yml/badge.svg)](https://github.com/reuteras/kali-tools/actions/workflows/linter.yml)
 
-Tools and configurations for my Kali installation.
+Tools and configurations for my [Kali](https://www.kali.org/) installation.
 
 Basic installation is done with:
 
-    ./bin/setup.sh
+```bash
+./bin/setup.sh
+```
 
-To get my version of _.bashrc_, _.vimrc_ run **make**.
+The repository includes a Makefile with the following targets:
 
-Configuration scripts exists for the following tools.
+- `make install` - install my versions of _.bashrc_, _.bash_aliases_ and _.vimrc_
+- `make update` - update the installed packages
+- `make clean` - remove cached packages and zero free disk space before shrinking a VM disk
+- `make test` - run shellcheck on the scripts
 
-* [iSniff-GPS](https://github.com/hubert3/iSniff-GPS)
-* [howmanypeoplearearound](https://github.com/schollz/howmanypeoplearearound)
+Install scripts exist for the following tools:
+
+- [bbot](https://github.com/blacklanternsecurity/bbot) - `bin/install-bbot.sh`
+- [capa](https://github.com/mandiant/capa) - `bin/update-capa.sh` installs or updates capa in _~/bin_
+- [Docker](https://www.kali.org/docs/containers/installing-docker-on-kali/) - `bin/install-docker.sh`
+- [howmanypeoplearearound](https://github.com/schollz/howmanypeoplearearound) - `bin/install-howmanypeoplearearound.sh`
+
+Shared folders in VMware are mounted under _/mnt/hgfs_ with `sudo bin/mount-shared-folders`.
 
 ## Tools
 
-### iSniff-GPS
-
-I've only tested the script with [TP-Link TL-WN722N](http://www.tp-link.com/en/products/details/cat-11_TL-WN722N.html). It has to be hardware version 1.10. The current hardware version 2 and 3 doesn't work.
-
-To install run:
-
-    ./bin/setup-iSniff-GPS.sh
-
-To use it run:
-
-    ./bin/iSniff-GPS-listen.sh      # Start to listen
-    ./bin/iSniff-GPS-web.sh         # Start web server and iceweasel
-
 ### Alfa wireless card
 
-I have a wireless card from [Alfa](https://www.alfa.com.tw/). To get it working do the following after connecting with USB 3.0 if run in Fusion:
+I have a wireless card from [Alfa](https://www.alfa.com.tw/). To install the driver and put the card in monitor mode after connecting it with USB 3.0 (if run in VMware Fusion) run:
 
-    sudo apt-get install realtek-rtl88xxau-dkms
-    sudo modprobe 88XXau
+```bash
+./bin/configure-alfa-monitor.sh
+```
 
-To activate it in monitoring mode run:
+The script does the following:
 
-    sudo ip link set wlan0 down
-    sudo iwconfig wlan0 mode monitor
-    sudo ip link set wlan0 up
+```bash
+sudo apt install -y realtek-rtl88xxau-dkms
+sudo modprobe 88XXau
+sudo ip link set wlan0 down
+sudo iw dev wlan0 set type monitor
+sudo ip link set wlan0 up
+```
 
 More information can be found in this blog about [How to get your new 5 GHz wireless penetration gear up and working](https://medium.com/@adam.toscher/configure-your-new-wireless-ac-1fb65c6ada57).
 
 ### howmanypeoplearearound
 
-How Count the number of people around you by monitoring Wi-Fi signals with the help of [howmanypeoplearearound](https://github.com/schollz/howmanypeoplearearound).
+Count the number of people around you by monitoring Wi-Fi signals with the help of [howmanypeoplearearound](https://github.com/schollz/howmanypeoplearearound). Note that the upstream project hasn't had a release since 2019.
 
-    cd ~/kali-tools/bin
-    ./configure-alfa-monitor.sh
-    ./install-howmanypeoplearearound.sh
-    cd ~/src/howmanypeoplearearound && . venv/bin/activate && howmanypeoplearearound -a wlan0
+```bash
+cd ~/kali-tools/bin
+./configure-alfa-monitor.sh
+./install-howmanypeoplearearound.sh
+cd ~/src/howmanypeoplearearound && . venv/bin/activate && howmanypeoplearearound -a wlan0
+```
 
-To create a graph of run the following command in one window:
+To create a graph, run the following command in one window:
 
-    cd ~/src/howmanypeoplearearound && . venv/bin/activate && howmanypeoplearearound -o test.json -a wlan0 --loop
+```bash
+cd ~/src/howmanypeoplearearound && . venv/bin/activate && howmanypeoplearearound -o test.json -a wlan0 --loop
+```
 
-After a couple of points been created run this command in another window:
+After a couple of points have been collected, run this command in another window:
 
-    cd ~/src/howmanypeoplearearound && . venv/bin/activate && howmanypeoplearearound --analyze test.json
+```bash
+cd ~/src/howmanypeoplearearound && . venv/bin/activate && howmanypeoplearearound --analyze test.json
+```
 
 ### bbot
 
 For more information see the GitHub [repository](https://github.com/blacklanternsecurity/bbot).
 
-    cd ~/kali-tools/bin
-    ./install-bbot.sh
-
-Then start websocat.
+```bash
+./bin/install-bbot.sh
+bbot --help
+```

@@ -1,12 +1,9 @@
 #!/bin/bash
+# Install bbot, https://github.com/blacklanternsecurity/bbot
 
-cd ~/src || exit
+set -euo pipefail
 
-#[[ -d bbot-vivagraphjs ]] || git clone https://github.com/blacklanternsecurity/bbot-vivagraphjs.git
-
-which pipx > /dev/null 2>&1 || sudo apt install -y pipx
-
-[[ -d ~/bin ]] || mkdir ~/bin
-#[[ -f ~/bin/websocat ]] || curl -L -s -o ~/bin/websocat https://github.com/vi/websocat/releases/download/v1.13.0/websocat.aarch64-unknown-linux-musl && chmod +x ~/bin/websocat
+command -v pipx > /dev/null 2>&1 || sudo apt install -y pipx
 
 pipx install bbot
+pipx ensurepath
