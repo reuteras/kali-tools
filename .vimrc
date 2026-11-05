@@ -1,8 +1,5 @@
 " Many settings copied from
 "   https://github.com/nvie/vimrc
-" Use vim settings, rather then vi settings (much better!)
-" This must be first, because it changes other options as a side effect.
-set nocompatible
 set showmode                    " always show what mode we're currently editing in
 
 " Keyboard map
@@ -17,9 +14,7 @@ set ignorecase                  " ignore case when searching
 set smartcase                   " ignore case if search pattern is all lowercase,
                                 "    case-sensitive otherwise
 
-set wildignore=*.o,*.obj,*.bak,*.exe
-
-set updatecount=0               " number of characters before writting to swap
+set updatecount=0               " number of characters before writing to swap
 set nobackup                    " do not keep backup files, it's 70's style cluttering
 set noswapfile                  " do not write annoying intermediate swap files,
                                 "    who did ever restore from swap files
@@ -47,7 +42,7 @@ set pastetoggle=<F2>            " when in insert mode, press <F2> to go to
                                 "    paste mode, where you can paste mass data
                                 "    that won't be autoindented
 
-set fileformats="unix,dos,mac"
+set fileformats=unix,dos,mac
 set formatoptions+=1            " When wrapping paragraphs, don't end lines
                                 "    with 1-letter words (looks stupid)
 
@@ -61,7 +56,6 @@ vnoremap / /\v
 " Let F3 insert timestamp
 inoremap <F3> <C-R>=strftime('%c').': '<CR>
 
-set termencoding=utf-8
 set encoding=utf-8
 
 set laststatus=2                " tell VIM to always put a status line in, even
@@ -69,15 +63,15 @@ set laststatus=2                " tell VIM to always put a status line in, even
 
 set history=1000                " remember more commands and search history
 set undolevels=1000             " use many muchos levels of undo
-if v:version >= 730
-    set undofile                " keep a persistent backup file
+if has('persistent_undo')
+    set undofile                " keep a persistent undo file
     set undodir=~/.vim/.undo
 endif
 
 set wildmenu                    " make tab completion for files/buffers act like bash
 set wildmode=list:full          " show a list when pressing tab and complete
                                 "    first full match
-set wildignore=*.swp,*.bak,*.pyc,*.class
+set wildignore=*.o,*.obj,*.exe,*.swp,*.bak,*.pyc,*.class
 set title                       " change the terminal's title
 set visualbell                  " don't beep
 set noerrorbells                " don't beep
@@ -101,10 +95,8 @@ augroup resCur
 augroup END
 
 " Spell
-" Download Swedish files from ftp://ftp.vim.org/pub/vim/runtime/spell/sv/
+" Vim offers to download missing spell files the first time they are used.
 " Control via
 " setlocal spell spelllang=sv
 " setlocal spell spelllang=en
 " set nospell
-
-let g:syntastic_check_on_wq = 0

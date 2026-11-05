@@ -3,7 +3,7 @@
 set -e
 
 # Make sure tshark is installed (should be)
-sudo apt install tshark python3-venv
+sudo apt install -y tshark python3-venv
 
 echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
 sudo DEBIAN_FRONTEND=noninteractive dpkg-reconfigure wireshark-common
