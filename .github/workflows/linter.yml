@@ -9,10 +9,12 @@ on:
 
 permissions:
   contents: read
-  statuses: write
 
 jobs:
   build:
+    permissions:
+      contents: read
+      statuses: write
     runs-on: ubuntu-latest
 
     steps:
@@ -31,3 +33,23 @@ jobs:
           VALIDATE_MARKDOWN_PRETTIER: false
           VALIDATE_SPELL_CODESPELL: false
           VALIDATE_YAML_PRETTIER: false
+
+  # The required check (ruleset required-checks) that Dependabot auto-merge
+  # waits for; see dev-docs docs/github.md.
+  checks-passed:
+    name: Checks passed
+    if: always()
+    needs: [build]
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: Check job results
+        env:
+          RESULTS: ${{ join(needs.*.result, ' ') }}
+        run: |
+          for result in $RESULTS; do
+            if [ "$result" != "success" ]; then
+              echo "A job ended with: $result"
+              exit 1
+            fi
+          done
